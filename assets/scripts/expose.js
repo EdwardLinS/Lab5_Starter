@@ -2,7 +2,13 @@
 
 window.addEventListener("DOMContentLoaded", init);
 
-function updateVolumeIcon() {
+/**
+ * Updates the icon according to current volume level
+ * 
+ * @param {Number} volumeLevel 
+ */
+function updateVolumeIcon(volumeLevel) {
+  
   const volumeIcon = document.querySelector("img[alt='Volume level 2']"); // volume icon level
 
   // check volume level
@@ -24,7 +30,6 @@ function init() {
   const hornAudio = document.querySelector("audio"); // horn audio
 
   const volumeInput = document.getElementById("volume"); // volume input
-  const volumeIcon = document.querySelector("img[alt='Volume level 2']"); // volume icon level
   let volumeLevel = volumeInput.value; // current volume level
 
   const playButton = document.querySelector("button"); // play button
@@ -38,20 +43,12 @@ function init() {
   });
 
   // on volume change
-  volumeInput.addEventListener("change", (e) => {
+  volumeInput.addEventListener("input", (e) => {
     // update volume
     volumeLevel = Number(e.target.value);
 
-    // check volume level
-    if (volumeLevel === 0) {
-      volumeIcon.src = "assets/icons/volume-level-0.svg";
-    } else if (volumeLevel < 33) {
-      volumeIcon.src = "assets/icons/volume-level-1.svg";
-    } else if (volumeLevel < 67) {
-      volumeIcon.src = "assets/icons/volume-level-2.svg";
-    } else {
-      volumeIcon.src = "assets/icons/volume-level-3.svg";
-    }
+    hornAudio.volume = volumeLevel / 100;
+    updateVolumeIcon(volumeLevel)
   });
 
   // on button click
@@ -65,7 +62,7 @@ function init() {
         jsConfetti.addConfetti();
       }
 
-      hornAudio.volume = volumeLevel / 100;
+      // hornAudio.volume = volumeLevel / 100;
       hornAudio.play();
     }
   });
