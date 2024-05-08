@@ -38,8 +38,10 @@ const speakMessage = (chosenVoice, message) => {
   if (message === undefined) { return }
 
   // utterance object
-  const utterance = new SpeechSynthesisUtterance(message);
+  const utterance = new SpeechSynthesisUtterance(message.trim());
   utterance.voice = chosenVoice;
+
+  speechSynthesis.speak(utterance);
 
   // open mouth
   utterance.addEventListener("start", () => {
@@ -50,8 +52,6 @@ const speakMessage = (chosenVoice, message) => {
   utterance.addEventListener("end", () => {
     friend.src = "assets/images/smiling.png";
   });
-
-  speechSynthesis.speak(utterance);
 };
 
 function init() {
