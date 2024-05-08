@@ -34,8 +34,10 @@ const speakMessage = (chosenVoice, message) => {
   // smiling face
   const friend = document.querySelector("img[alt='Smiling face']");
 
+  console.log(message);
+
   // no message, don't speak or open mouth
-  if (message === undefined) { return }
+  if (message === "") { return }
 
   // utterance object
   const utterance = new SpeechSynthesisUtterance(message.trim());
@@ -73,7 +75,7 @@ function init() {
   playButton.addEventListener("click", () => {
     // speak if voice selected
     if (voiceSelect.value !== "select") {
-      speakMessage(voices[voiceSelect.value], textToSpeak.value);
+      speakMessage(voices[voiceSelect.value], textToSpeak.value.trim());
     }
   });
 }
