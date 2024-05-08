@@ -31,6 +31,9 @@ function init() {
 
   const volumeInput = document.getElementById("volume"); // volume input
   let volumeLevel = volumeInput.value; // current volume level
+  hornAudio.volume = volumeLevel / 100;
+
+  console.log(hornAudio.volume);
 
   const playButton = document.querySelector("button"); // play button
 
