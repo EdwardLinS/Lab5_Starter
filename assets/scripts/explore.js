@@ -34,6 +34,9 @@ const speakMessage = (chosenVoice, message) => {
   // smiling face
   const friend = document.querySelector("img[alt='Smiling face']");
 
+  // no message, don't speak or open mouth
+  if (message === undefined) { return }
+
   // utterance object
   const utterance = new SpeechSynthesisUtterance(message);
   utterance.voice = chosenVoice;
