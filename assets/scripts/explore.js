@@ -34,8 +34,6 @@ const speakMessage = (chosenVoice, message) => {
   // smiling face
   const friend = document.querySelector("img[alt='Smiling face']");
 
-  console.log(message);
-
   // no message, don't speak or open mouth
   if (message === "") { return }
 
